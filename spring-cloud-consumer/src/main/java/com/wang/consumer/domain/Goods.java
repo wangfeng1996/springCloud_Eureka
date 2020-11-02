@@ -5,11 +5,17 @@ package com.wang.consumer.domain;
  * @author 一只永不言弃的小乌龟
  */
 public class Goods {
+    /**
+     * id: 商品的id
+     * title:商品的名称
+     * price:商品的价格
+     * count: 商品的库存
+     */
 
     private int id;
-    private String title;//商品标题
-    private double price;//商品价格
-    private int count;//商品库存
+    private String title;
+    private double price;
+    private int count;
 
     public Goods() {
     }
