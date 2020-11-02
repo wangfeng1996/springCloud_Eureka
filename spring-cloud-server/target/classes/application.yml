@@ -1,0 +1,21 @@
+server:
+  port: 8761  # 默认端口
+
+# eureka 的配置
+eureka:
+  instance: # 实例对象
+    hostname: localhost
+#  eureka的可视化界面
+  dashboard:
+    enabled: true
+    path: /
+
+
+# Eureka客户端配置
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka  # 暴露地址，专门给客户端进行访问 默认地区
+    register-with-eureka: false # 是否将自己注册到Eureka中，一般使用Eureka集群的时候会使用
+    fetch-registry: false  # 是否去注册中心抓取地址
+
+
