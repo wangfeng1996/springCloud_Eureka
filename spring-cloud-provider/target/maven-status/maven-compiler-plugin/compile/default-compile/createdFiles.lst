@@ -1,0 +1,5 @@
+com/wang/provider/controller/GoodsController.class
+com/wang/provider/ProviderApp.class
+com/wang/provider/dao/GoodsDao.class
+com/wang/provider/domain/Goods.class
+com/wang/provider/service/GoodsService.class
