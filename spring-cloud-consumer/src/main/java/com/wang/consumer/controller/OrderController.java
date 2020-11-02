@@ -2,17 +2,17 @@ package com.wang.consumer.controller;
 
 
 import com.wang.consumer.domain.Goods;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Optional;
+import java.util.List;
 
 
 /**
@@ -29,26 +29,31 @@ public class OrderController {
      */
     @Autowired
     private RestTemplate restTemplate;
+    /**
+     * 注入discoverClient  发现客户端  从注册中心获取服务的名称
+     */
+    @Autowired
+    private DiscoveryClient discoveryClient;
 
     @GetMapping("/goods/{id}")
     public Goods findGoodsById(@PathVariable("id") int id) {
-/**
- * 指定你要访问的地址,这个地址是服务的生产者的地址,端口号和地址都不能搞错
- *
- *   远程调用Goods服务中的findOne接口
- */
-        String url = "http://localhost:9000/goods/findOne/" + id;
+//        获取实例对象(集合中不至一个实例对象)
+        List<ServiceInstance> instances = discoveryClient.getInstances("spring-cloud-provider");
+//        判断实例是否为空
+        if (instances == null || instances.size() == 0) {
+            return null;
+        }
+//        获取第一个实例对象
+        ServiceInstance instance = instances.get(0);
+//        获取主机地址
+        String host = instance.getHost();
+//        获取端口号
+        int port = instance.getPort();
+//        拼接成url
+        String url = "http://" + host + ":" + port + "/goods/findOne/" + id;
+//       调用生产者的接口
+        Goods goods = restTemplate.getForObject(url, Goods.class, "");
 
-
-        ResponseEntity<Goods> forEntity = restTemplate.getForEntity(url, Goods.class, "");
-
-        Goods body = forEntity.getBody();
-
-        return body;
-
-
-
-
-
+        return goods;
     }
 }
