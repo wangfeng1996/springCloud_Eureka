@@ -1,0 +1,4 @@
+com/wang/consumer/controller/OrderController.class
+com/wang/consumer/domain/Goods.class
+com/wang/consumer/config/RestTemplateConfig.class
+com/wang/consumer/ConsumerApp.class
