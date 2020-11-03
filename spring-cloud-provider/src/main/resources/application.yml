@@ -13,11 +13,11 @@ eureka:
     # 实例的id --> 主机名:项目名称:端口号
     instance-id: ${eureka.instance.ip-address}:${spring.application.name}:${server.port}
 
-    # 前提是注册中心中开启自我保护机制
-      #    每次发送心跳的时间间隔(判断是否存活)
-    lease-renewal-interval-in-seconds: 30
-      #    没有收到心跳包，则会剔除该服务
-    lease-expiration-duration-in-seconds: 90
+#    # 前提是注册中心中开启自我保护机制
+#      #    每次发送心跳的时间间隔(判断是否存活)
+#    lease-renewal-interval-in-seconds: 30
+#      #    没有收到心跳包，则会剔除该服务
+#    lease-expiration-duration-in-seconds: 90
 
 
 spring:

@@ -6,6 +6,22 @@ eureka:
   client:
     service-url:
       defalutZone: http://127.0.0.1:8761/eureka
+
+  instance: # 一般配置在client中
+    prefer-ip-address: true # 是否将自己的ip注册到eureka中(公网使用),默认是false，注册是主机名
+    ip-address: 127.0.0.1 # 设置当前实例的IP地址
+    # 实例的id --> 主机名:项目名称:端口号
+    instance-id: ${eureka.instance.ip-address}:${spring.application.name}:${server.port}
+
+#    # 前提是注册中心中开启自我保护机制
+#      #    每次发送心跳的时间间隔(判断是否存活)
+#    lease-renewal-interval-in-seconds: 30
+#      #    没有收到心跳包，则会剔除该服务
+#    lease-expiration-duration-in-seconds: 90
+
+
 spring:
   application:
     name: spring-cloud-provider
+
+

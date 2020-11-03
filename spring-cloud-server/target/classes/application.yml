@@ -5,13 +5,21 @@ server:
 eureka:
   instance: # 实例对象
     hostname: localhost
-#  eureka的可视化界面
+
+#  server:
+#    #    是否开启自我保护机制。默认是true）（生产环境不要动）
+#    enable-self-preservation: false
+#    eviction-interval-timer-in-ms: 0
+
+
+  #    清理间隔
+  #  eureka的可视化界面
   dashboard:
     enabled: true
     path: /
 
 
-# Eureka客户端配置
+  # Eureka客户端配置
   client:
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka  # 暴露地址，专门给客户端进行访问 默认地区

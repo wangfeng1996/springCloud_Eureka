@@ -6,10 +6,10 @@ eureka:
   instance: # 实例对象
     hostname: localhost
 
-  server:
-    #    是否开启自我保护机制。默认是true）（生产环境不要动）
-    enable-self-preservation: false
-    eviction-interval-timer-in-ms: 0
+#  server:
+#    #    是否开启自我保护机制。默认是true）（生产环境不要动）
+#    enable-self-preservation: false
+#    eviction-interval-timer-in-ms: 0
 
 
   #    清理间隔

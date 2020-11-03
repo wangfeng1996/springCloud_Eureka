@@ -17,3 +17,7 @@ eureka:
 spring:
   application:
     name: spring-cloud-consumer
+
+spring-cloud-provider: # 生产者服务的名称
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule  # 负载均衡策略（随机）

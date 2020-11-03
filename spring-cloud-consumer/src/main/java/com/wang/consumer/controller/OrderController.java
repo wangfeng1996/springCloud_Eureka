@@ -56,4 +56,22 @@ public class OrderController {
 
         return goods;
     }
+
+    /**
+     * 使用ribbon进行服务的调用
+     * @param id
+     * @return
+     */
+
+
+    @GetMapping("/goods2/{id}")
+    public Goods findGoodsById2(@PathVariable("id") int id) {
+
+
+//        拼接成url
+        String url = "http://SPRING-CLOUD-PROVIDER/goods/findOne/" + id;
+//       调用生产者的接口
+        Goods goods = restTemplate.getForObject(url, Goods.class, "");
+        return goods;
+    }
 }
